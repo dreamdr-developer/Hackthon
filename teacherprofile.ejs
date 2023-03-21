@@ -1,0 +1,107 @@
+<%- include('partials/header.ejs') %>
+<section id="adddetail" style="z-index: 999; display: none;  background: rgba(0, 0, 0, 0.548); min-height: 100vh; width: 100%; position: fixed; " >
+    <button class="btn btn-danger" onclick="closed()" style="position: absolute; right: 5%; top: 5%;">cencle</button>
+    <div id="login" class="d-flex flex-column align-items-center p-5 h-auto" style="position: absolute;top: 50%; left: 50%; transform: translate(-50%,-50%); width: 60%; background: #fff; box-shadow: none;">
+        <h5>add student detail</h5>
+        <form action="/addstudent" method="post" class="w-100 d-flex flex-column gap-4 p-4">
+            <div class="form-group d-flex gap-2 align-items-center justify-content-between">
+                <label for="username">E-Mail</label>
+                <input type="email" name="email" id="" placeholder="Email" style="border: none;" class="p-2 border-bottom w-75">
+            </div>
+            
+            <div class="form-group d-flex gap-2 align-items-center justify-content-between">
+                <label for="username">Student Name</label>
+                <input type="text" name="name" id="" placeholder="name" style="border: none;" class="p-2 border-bottom w-75">
+            </div>
+            <div class="form-group d-flex gap-2 align-items-center justify-content-between">
+                <label for="username">Class</label>
+                <input type="text" name="class" id="" placeholder="class" style="border: none;" class="p-2 border-bottom w-75">
+            </div>
+            <div class="form-group d-flex gap-5 align-items-center">
+                <label for="username">D.O.B</label>
+                <input type="date" name="dob" id="" >
+            </div>
+            <button class="btn btn-primary mx-auto mt-5 w-50">SUBMIT</button>
+        </form>
+    </div>
+</section>
+
+<div id="main">
+
+    <div id="section1">
+        <div id="live">
+           <a href="/live"> <img src="../images/c139d34d479a53a776f874cc718a3881-removebg-preview.png" style="border-radius: 50%;" alt=""></a>
+        </div>
+        <div id="left">
+            <h1>Hi <%=loginuser.firstname%> <%=loginuser.lastname%> ,</h1>
+            <p>The art of <span>teaching</span> is the art of assisting discovery, you are doing great job.</p>
+    <h4>Join us and connect student </h4>
+   <button class="button" id="add-std" onclick="showd()" role="button">add student</button>
+   </div>
+        <div id="right">
+            <img class="imgteach" src="https://i0.wp.com/under20s.com/wp-content/uploads/2022/05/1.png?fit=1200%2C675&ssl=1" alt="">
+            <img src="https://cdn.mycourse.app/v2.18.3/images/laptop-black-realistic.png" alt="">
+        </div>
+    </div>
+    <div id="section2">
+        <div id="graph">
+            <h2>Student growth graph:</h2>
+            <h3>Student Improvement</h3>
+            <h4>Weekly Test</h4>
+            <div>
+    
+                <canvas id="myChart"></canvas>
+              </div>
+        </div>
+        <div id="label">
+         <div class="label">
+            <div class="mark"></div><b>Student Improvement</b>
+         </div>
+         <div class="labelg">
+            <div class="mark"></div><b>Test Attendence</b>
+         </div>
+         <p>Let’s focus on things student can do, in practice. More specifically, we’ll see how to work towards improving academic performance, by making the most out of the functionality you’ll find in DreamClass</p>
+        </div>
+    </div>
+        </div>
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+<script>
+    var detailll = document.querySelector("#adddetail")
+function showd(){
+    detailll.style.display="flex"
+}
+function closed(){
+   detailll.style.display="none"
+}
+
+    async function fetchData(){
+    const url=' http://localhost/chartjs/project/finance.json';
+  }
+  const ctx = document.getElementById('myChart');
+  
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['01', '02', '03', '04', '05', '06','07'],
+      datasets: [{
+        label: 'Improved',
+        data: [4, 6, 3, 5, 4, 3,7, 8],
+        borderWidth: 1,
+        backgroundColor:['green','DarkGreen','red','Red','red','red','green']
+      }]
+    },
+    options: {
+      scales: {
+ y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+</script>    
+<%- include('partials/footer.ejs') %>
